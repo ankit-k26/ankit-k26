@@ -14,11 +14,13 @@
 
 ## 👋 About Me
 
-I'm a self-driven developer who builds things at the intersection of AI, computer vision, and thoughtful software design. I care about projects that solve real problems — not just demos. Whether it's a face-authenticated vault, a gesture-controlled mouse, or a local RAG assistant, I build to learn and ship to grow.
+I'm a self-driven developer who builds things at the intersection of AI, computer vision, and full-stack software. I care about projects that solve real problems — not just demos. Whether it's a face-authenticated vault, a gesture-controlled mouse, or a local RAG assistant, I build to learn and ship to grow.
 
-- 🔭 **Currently building:** AI SecureVault — a desktop security app with face recognition + AES encryption
-- 🌱 **Exploring:** LLMs, RAG pipelines, and local AI tooling
-- 💬 **Ask me about:** OpenCV, Python system design, PyQt5, or anything computer vision
+- 🎓 **MCA graduate (2026), Graphic Era University** — currently looking for my first full-time role
+- 🎯 **Applying across two tracks:** AI/ML Engineer and Full Stack Developer
+- 🔭 **Currently building:** Stacks — a full-stack RAG chatbot (React, Express, MongoDB, Qdrant, Ollama)
+- 🌱 **Exploring next:** relational database design, PostgreSQL, and real-time systems (WebSockets)
+- 💬 **Ask me about:** OpenCV, RAG pipelines, PyQt5, or anything computer vision
 - ⚡ **Philosophy:** *"The only way to learn is to build."*
 
 ---
@@ -28,167 +30,148 @@ I'm a self-driven developer who builds things at the intersection of AI, compute
 **Languages**
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
-![C](https://img.shields.io/badge/C-00599C?style=flat-square&logo=c&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![C](https://img.shields.io/badge/C-00599C?style=flat-square&logo=c&logoColor=white)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
 
-**Libraries & Frameworks**
+**Full Stack**
+
+![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white)
+![Express](https://img.shields.io/badge/Express-000000?style=flat-square&logo=express&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white)
+
+**AI / ML / Computer Vision**
 
 ![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=flat-square&logo=opencv&logoColor=white)
 ![TensorFlow](https://img.shields.io/badge/TensorFlow-FF6F00?style=flat-square&logo=tensorflow&logoColor=white)
-![PyQt5](https://img.shields.io/badge/PyQt5-41CD52?style=flat-square&logo=qt&logoColor=white)
 ![MediaPipe](https://img.shields.io/badge/MediaPipe-0097A7?style=flat-square&logo=google&logoColor=white)
-![LangChain](https://img.shields.io/badge/LangChain-1C3C3C?style=flat-square&logo=langchain&logoColor=white)
-![GTK](https://img.shields.io/badge/GTK4-4A86CF?style=flat-square&logo=gtk&logoColor=white)
-![LangChain](https://img.shields.io/badge/LangChain-1C3C3C?style=flat-square&logo=langchain&logoColor=white)
-![Ollama](https://img.shields.io/badge/Ollama-000000?style=flat-square&logo=ollama&logoColor=white)
+![LangChain](https://img.shields.io/badge/LangChain-1C3C3C?style=flat-square)
+![Ollama](https://img.shields.io/badge/Ollama-000000?style=flat-square)
+![Qdrant](https://img.shields.io/badge/Qdrant-DC244C?style=flat-square)
 
 **Tools & Platforms**
 
 ![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white)
-![VS Code](https://img.shields.io/badge/VS%20Code-007ACC?style=flat-square&logo=visual-studio-code&logoColor=white)
+![VS Code](https://img.shields.io/badge/VS%20Code-007ACC?style=flat-square&logo=visualstudiocode&logoColor=white)
 ![SQLite](https://img.shields.io/badge/SQLite-003B57?style=flat-square&logo=sqlite&logoColor=white)
-![PyInstaller](https://img.shields.io/badge/PyInstaller-3776AB?style=flat-square&logo=python&logoColor=white)
+![PyQt5](https://img.shields.io/badge/PyQt5-41CD52?style=flat-square&logo=qt&logoColor=white)
 
 ---
 
-## 🚀 Projects
+## 🚀 Featured Projects
+
+### 🧵 Stacks — Full-Stack RAG Chatbot
+> **React · Express/Node.js · Ollama (Gemma) · Qdrant · MongoDB**
+
+A solo-built, full-stack Retrieval-Augmented Generation chatbot with real conversation persistence — not just a wrapped LLM call.
+
+- **Pipeline:** query → embedded via Qwen3-Embedding (Ollama) → similarity search against Qdrant → retrieved chunks injected into a prompt template → Gemma (Ollama) generates the grounded answer
+- **Auth:** bcrypt password hashing + express-session, with sessions persisted in MongoDB via connect-mongo (survives server restarts, unlike in-memory sessions)
+- **Vector store:** Qdrant chosen over an embedded store for its dedicated server, filtering, and payload indexing — the right call for something meant to scale past a single-user toy
+- Lazy conversation persistence (a chat isn't written to MongoDB until there's an actual exchange), sidebar with rename/delete, theme persistence
+- Straight retrieval-then-generation — no tool calling or multi-step reasoning, so this is RAG, not an agent (see VoiceFlow below for the agentic example)
+
+---
 
 ### 🛡️ AI SecureVault
 > **Python · PyQt5 · face_recognition · dlib · Cryptography · SQLite**
 
-A production-grade desktop security application combining multi-factor authentication and AES file encryption. Face recognition with liveness detection (eye blink) serves as the primary auth method, with bcrypt-hardened passwords as fallback. Vault keys are derived via PBKDF2-HMAC-SHA256 (480K iterations) and **never stored on disk** — only the salt persists.
+A desktop security app combining face-recognition auth (with blink-based liveness detection) and AES file encryption.
 
-- 🎭 Real-time face recognition with liveness (blink) detection
-- 🔐 AES-128 Fernet encryption with session-bound, in-memory key
-- 🚨 Intruder capture: unknown faces are photographed and logged with timestamps
-- 📊 Full SQLite audit trail for all auth and encryption events
-- 📦 Ships as a standalone `.exe` via PyInstaller
+- **Auth flow:** primary auth is live face matching via `face_recognition`/dlib, with **liveness enforced by eye-blink detection** (Eye Aspect Ratio via `scipy.spatial.distance`) so a static photo can't unlock it — falls back to a bcrypt-verified password after repeated failures
+- **Key derivation chain:** vault password → PBKDF2-HMAC-SHA256 (480,000 iterations) → 256-bit key → converted to a Fernet key (AES-128-CBC + HMAC-SHA256, so tampering is detectable, not just unreadable)
+- **Nothing sensitive touches disk:** only the salt persists — the derived key lives in memory with a 1-hour TTL and is zeroed on logout
+- Intruder capture (unknown faces photographed + timestamped) and a full SQLite audit trail of every auth/encryption event
+- Packaged as a standalone Windows `.exe` via PyInstaller
 
 ---
 
-### 🧩 Crossword Puzzle Game
-> **C · GTK4**
+### 🤟 Real-Time Sign Language to Speech System
+> **Python · MediaPipe · TensorFlow · LangChain · Ollama · PyQt5**
 
-A desktop crossword puzzle game with a full GUI built in GTK. Features a Trie-based word engine, teacher/student roles, a word & hint database, and an access-controlled Teacher Menu for adding new words.
+A real-time pipeline that captures hand gestures via webcam and converts them into spoken English sentences.
 
-- Trie data structure for fast word lookup
-- Role-based UI (Student / Teacher)
-- Persistent word database via text file
-- Auto-generated crossword grid from word pool
+- **Representation:** each frame is a 126-dim vector — 21 landmarks × (x,y,z) × 2 hands, zero-padded when a hand isn't visible, keeping sequence shape consistent for the model
+- **Why LSTM, not a single-frame classifier:** signs unfold over time (30-frame sequences), so the model needs to learn motion, not just a static pose
+- **Graceful degradation throughout:** LLM grammar correction (LangChain + Ollama/Gemma) falls back to a rule-based capitalizer if Ollama is unreachable; facial-emotion detection falls back from DeepFace to geometric heuristics if DeepFace isn't installed — the LLM is an enhancement, never a hard dependency
+- Offline TTS via pyttsx3 with gTTS fallback, running in a background thread so speech never blocks inference
+- Full pipeline included: data collection → preprocessing → training → live inference
+- Reported 100% test accuracy reflects a small, custom-collected dataset with limited diversity (few signers, controlled lighting) — a strong proof of pipeline correctness, not yet a claim of real-world generalization
+
+---
+
+### 🎙️ VoiceFlow — AI Voice Assistant
+> **Python · LangChain · Ollama · pyttsx3 · SpeechRecognition**
+
+A local, agentic voice assistant with a real tool-dispatch loop, not scripted commands.
+
+- **Agent loop:** speech → text (Google STT) → `ChatOllama` with `bind_tools()` → the model itself decides whether the request needs a tool call and which one → the tool actually executes (opens a URL, launches an app, runs a search) → result returned to the model as a `ToolMessage` → final response spoken via TTS
+- This decision step — the model choosing *whether and which* tool to invoke — is what makes this genuinely agentic, as opposed to Stacks' fixed retrieve-then-generate flow
+- Supports local Ollama models (llama3.2, mistral, phi3) and cloud models; cloud requests leave the device, local ones don't — documented and left as a deliberate user choice
+- Continuous or single-shot listening modes with ambient noise calibration; hot-swappable models at runtime
 
 ---
 
 ### 📄 DocMind AI — RAG Document Q&A
 > **Python · LangChain · Ollama · ChromaDB · Tkinter**
 
-A local RAG (Retrieval-Augmented Generation) application that lets you upload documents and ask questions about them using a locally running LLM.
+A fully local RAG application — upload a document, ask questions, get source-attributed answers, no data leaves the device.
 
-- Supports PDF, DOCX, TXT, CSV, Markdown
-- Chunking, embedding, and vector storage with ChromaDB
-- Hot-swappable Ollama chat models
-- Clean dark-themed Tkinter GUI with source attribution
-
----
-
-### 🛡️ Face Recognition Security System
-> **Python · OpenCV · Tkinter**
-
-A real-time face recognition security system that uses OpenCV's LBPH algorithm to register and authenticate users via webcam.
-
-- Register multiple users with live face capture
-- Real-time recognition with confidence scoring
-- Access log with GRANTED / DENIED history
-- Face management (add / delete users)
+- **Same category as Stacks, different implementation:** ChromaDB (embedded, single-user) instead of Qdrant, a Tkinter desktop GUI instead of a web stack, and no multi-user accounts or persisted history — a lighter-weight tool by design, not a cut corner
+- Supports PDF, DOCX, TXT, CSV, and Markdown
+- Chunk size, overlap, and Top-K retrieval are all user-configurable from the UI, not hardcoded constants
+- Hot-swappable Ollama chat models without re-indexing the document store
 
 ---
 
 ### 🖐️ Hand Gesture Mouse Controller
 > **Python · MediaPipe · TensorFlow · PyAutoGUI**
 
-Control your computer mouse entirely with hand gestures captured via webcam — no hardware required.
+Full mouse control via webcam hand gestures — no extra hardware required.
 
-| Gesture | Action |
-|---|---|
-| Palm | Move Cursor |
-| Index finger | Left Click |
-| Peace ✌️ | Right Click |
-| Fist | Scroll |
-| Thumb + Pinky | Double Click |
-| OK 👌 | Click & Drag |
-
-- MediaPipe landmark detection (63 features)
-- Custom TensorFlow classifier trained on collected data
-- Gesture smoothing with ring buffer for stability
-- Data collection & training pipeline included
+- MediaPipe extracts 21 hand landmarks (63 features) feeding a custom TensorFlow dense classifier across six gesture classes
+- **Landmarks are normalized relative to the wrist**, making the model invariant to where your hand is in frame or how close it is to the camera
+- **Gesture smoothing via a ring buffer** — a single frame's prediction is noisy, so a gesture is only confirmed once several consecutive frames agree, keeping the cursor stable
+- Single-frame classification (dense network, no memory across time) — a useful contrast with the sign language project's sequence-based LSTM, since mouse gestures are static poses rather than motions
 
 ---
 
-### 🌐 Custom New Tab Page
-> **HTML · CSS · JavaScript**
+### 🛡️ Face Recognition Security System
+> **Python · OpenCV · Tkinter**
 
-A personalized browser new tab page themed around anime aesthetics.
+A real-time access-control system using OpenCV's LBPH (Local Binary Patterns Histograms) algorithm — a classical, pre-deep-learning face recognition technique that encodes local texture patterns and compares histograms.
 
-- Live clock with date
-- Google search bar
-- Quick-access shortcut tiles (Anime, Manga, YouTube, etc.)
-- Animated sidebar with Google apps
-- Responsive design for mobile
+- Fast and GPU-free, but more lighting-sensitive and less accurate than the dlib-based deep embeddings used in AI SecureVault — the earlier, simpler project that led directly into building SecureVault's more robust approach
+- Register multiple users with live face capture; real-time recognition with confidence scoring
+- GRANTED / DENIED access log with a management dashboard for adding/removing registered faces
 
 ---
 
-### 🔢 Sudoku Game
-> **HTML · CSS · JavaScript**
+### 🧩 Crossword Puzzle Game
+> **C · GTK4**
 
-A fully functional browser-based Sudoku game with a polished UI.
-
-- 3 difficulty levels (Easy / Medium / Hard)
-- Dark mode toggle
-- Save & continue game via localStorage
-- Real-time error highlighting
-- Animated win screen with time display
+A desktop crossword game built around a **Trie (prefix tree)** for the word/hint engine — the right data structure for fast prefix-based word lookup, which is exactly what generating a crossword grid requires. Includes role-based (student/teacher) access control and a persistent word database.
 
 ---
 
-### 🎙️ VoiceFlow — AI Voice Assistant
-> **Python · LangChain · Ollama · pyttsx3 · SpeechRecognition · Tkinter**
+## 📊 Currently Working Toward
 
-A local AI-powered voice assistant with a tool-calling agent loop. Speaks commands aloud,
-transcribes your voice, and dispatches real system actions — entirely on-device.
-
-- LangChain agent with `bind_tools()` loop — routes commands to the right tool automatically
-- Opens websites, launches apps, searches Google/YouTube via voice
-- Continuous **or** single-shot listening modes with ambient noise calibration
-- Offline TTS via pyttsx3 with voice preference selection
-- Hot-swappable Ollama models at runtime (supports cloud models like MiniMax, Kimi)
-- Sliding conversation memory window for context-aware responses
-
----
-
-### 🤟 Sign Language to Speech System
-> **Python · MediaPipe · TensorFlow · LangChain · Ollama · pyttsx3 · PyQt5**
-
-A real-time sign language recognition pipeline that captures hand gestures via webcam, classifies them using an LSTM model, and converts them into spoken natural English sentences.
-
-- 🖐️ Dual-hand landmark extraction (126-dim vectors) via MediaPipe Tasks API
-- 🎭 Facial emotion detection integrated into sentence tone via MediaPipe Face Landmarker
-- 🧠 LSTM classifier trained on custom-collected 30-frame gesture sequences
-- 💬 LLM-powered grammar correction using LangChain + Ollama (Gemma)
-- 🔊 Offline TTS via pyttsx3 with gTTS fallback
-- 📦 Full pipeline: data collection → preprocessing → training → live inference
+- [ ] A relational-database-backed project (PostgreSQL) to round out full-stack applications
+- [ ] Real-time systems using WebSockets
+- [ ] Deeper hands-on experience with fine-tuning (LoRA/QLoRA)
 
 ---
 
 ## 📬 Connect
 
-I'm always open to interesting project ideas, collaborations, or just a good tech conversation.
+I'm always open to interesting project ideas, collaborations, or a good tech conversation.
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ankit-kumar-10o26/)
 [![Instagram](https://img.shields.io/badge/Instagram-Follow-E4405F?style=flat-square&logo=instagram&logoColor=white)](https://www.instagram.com/_.ken_k_/)
-[![Discord](https://img.shields.io/badge/Discord-Join%20Server-5865F2?style=flat-square&logo=discord&logoColor=white)](https://discord.gg/WBBYCyJbrb)
 [![Email](https://img.shields.io/badge/Email-D14836?style=flat-square&logo=gmail&logoColor=white)](mailto:ankitmukesh2003@email.com)
-[![Portfolio](https://img.shields.io/badge/Portfolio-Visit-1a1a2e?style=flat-square&logo=vercel&logoColor=white)](https://ankitkportfolio.streamlit.app/)
+[![Portfolio](https://img.shields.io/badge/Portfolio-Visit-1a1a2e?style=flat-square&logo=vercel)](https://ankitkportfolio.streamlit.app/)
 
 ---
 
