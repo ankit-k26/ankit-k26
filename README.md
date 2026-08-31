@@ -172,7 +172,7 @@ I'm always open to interesting project ideas, collaborations, or a good tech con
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ankit-kumar-10o26/)
 [![Instagram](https://img.shields.io/badge/Instagram-Follow-E4405F?style=flat-square&logo=instagram&logoColor=white)](https://www.instagram.com/_.ken_k_/)
 [![Email](https://img.shields.io/badge/Email-D14836?style=flat-square&logo=gmail&logoColor=white)](mailto:ankitmukesh2003@email.com)
-[![Portfolio](https://img.shields.io/badge/Portfolio-Visit-1a1a2e?style=flat-square&logo=vercel)](https://ankitkportfolio.streamlit.app/)
+[![Portfolio](https://img.shields.io/badge/Portfolio-Visit-1a1a2e?style=flat-square&logo=vercel)](https://portfolio-ankitk26-projects.vercel.app/)
 
 ---
 
