@@ -75,7 +75,7 @@ A solo-built, full-stack Retrieval-Augmented Generation chatbot with real conver
 
 ---
 
-### 🛡️ AI SecureVault
+### 🛡️ SecureVault
 > **Python · PyQt5 · face_recognition · dlib · Cryptography · SQLite**
 
 A desktop security app combining face-recognition auth (with blink-based liveness detection) and AES file encryption.
@@ -89,14 +89,15 @@ A desktop security app combining face-recognition auth (with blink-based livenes
 ---
 
 ### 🤟 Real-Time Sign Language to Speech System
-> **Python · MediaPipe · TensorFlow · LangChain · Ollama · PyQt5**
+> **Python · FastAPI · React · MediaPipe · TensorFlow · LangChain · Ollama**
 
-A real-time pipeline that captures hand gestures via webcam and converts them into spoken English sentences.
+A real-time, full-stack pipeline that captures hand gestures via webcam and converts them into spoken English sentences.
 
 - **Representation:** each frame is a 126-dim vector — 21 landmarks × (x,y,z) × 2 hands, zero-padded when a hand isn't visible, keeping sequence shape consistent for the model
 - **Why LSTM, not a single-frame classifier:** signs unfold over time (30-frame sequences), so the model needs to learn motion, not just a static pose
+- **Full-stack, not desktop:** originally a PyQt5 app; now a FastAPI backend streams inference over WebSockets (`/ws/infer`, `/ws/collect`) to a React frontend that owns the webcam via `getUserMedia` — the model, MediaPipe, and LLM logic all run server-side, untouched
 - **Graceful degradation throughout:** LLM grammar correction (LangChain + Ollama/Gemma) falls back to a rule-based capitalizer if Ollama is unreachable; facial-emotion detection falls back from DeepFace to geometric heuristics if DeepFace isn't installed — the LLM is an enhancement, never a hard dependency
-- Offline TTS via pyttsx3 with gTTS fallback, running in a background thread so speech never blocks inference
+- Offline TTS via pyttsx3 with gTTS fallback, synthesized server-side and streamed back as audio for browser playback
 - Full pipeline included: data collection → preprocessing → training → live inference
 - Reported 100% test accuracy reflects a small, custom-collected dataset with limited diversity (few signers, controlled lighting) — a strong proof of pipeline correctness, not yet a claim of real-world generalization
 
